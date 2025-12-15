@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Prathvi 🎂</title>
+<style>
+body {
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  height:100vh;
+  background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+  overflow:hidden;
+  text-align:center;
+  color:#fff;
+}
+
+/* Floating Hearts */
+.heart {
+  position:absolute;
+  font-size:18px;
+  animation: float 6s linear infinite;
+  color: rgba(255,255,255,0.7);
+}
+@keyframes float {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-10vh); }
+}
+
+/* Card style */
+.card {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 30px 20px;
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  max-width: 360px;
+  width: 92%;
+  margin-top: 10px;
+  text-align:center;
+}
+
+/* Scrollable cards for photos and long wish */
+#page3, #page4 {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Text and Buttons */
+h2, h1 { margin: 10px 0; color:#fff; }
+p { margin: 10px 0; line-height: 1.6; color:#fff; }
+button{
+  margin-top:15px;
+  padding:10px 25px;
+  font-size:16px;
+  border:none;
+  border-radius:30px;
+  background:#ff69b4;
+  color:white;
+  cursor:pointer;
+}
+button:hover{background:#ff1493;}
+.hidden{display:none;}
+
+/* Images */
+img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+
+/* Cake & Candle */
+.cake-container {
+  position: relative;
+  width: 220px;
+  height: 160px;
+  margin: 20px auto;
+}
+
+.cake {
+  width: 220px;
+  height: 100px;
+  background: linear-gradient(to bottom, #8B4513 0%, #5C2F0E 100%);
+  border-radius: 0 0 25px 25px;
+  position: absolute;
+  bottom: 0;
+  box-shadow: inset 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.candle {
+  width: 15px;
+  height: 50px;
+  background: #ffffff;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 0 3px #999;
+}
+
+.flame {
+  width: 16px;
+  height: 25px;
+  background: radial-gradient(circle at 50% 30%, #ff0000 0%, #ffa500 50%, #ffff00 100%);
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255,100,0,0.8), 0 0 40px rgba(255,150,0,0.6);
+  animation: flicker 0.2s infinite;
+}
+.flame.off {
+  transform: translateX(-50%) scaleY(0);
+  animation: none;
+}
+@keyframes flicker {
+  0% { transform: translateX(-50%) scaleY(1) rotate(0deg); opacity:1; }
+  25% { transform: translateX(-50%) scaleY(1.1) rotate(2deg); opacity:0.9; }
+  50% { transform: translateX(-50%) scaleY(0.9) rotate(-2deg); opacity:1; }
+  75% { transform: translateX(-50%) scaleY(1.1) rotate(1deg); opacity:0.95; }
+  100% { transform: translateX(-50%) scaleY(1) rotate(0deg); opacity:1; }
+}
+</style>
+</head>
+<body>
+
+<!-- Floating Hearts -->
+<div class="heart" style="left:10%; animation-delay:0s;">❤</div>
+<div class="heart" style="left:30%; animation-delay:2s;">💖</div>
+<div class="heart" style="left:50%; animation-delay:4s;">💘</div>
+<div class="heart" style="left:70%; animation-delay:1s;">💕</div>
+<div class="heart" style="left:90%; animation-delay:3s;">❤</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="../media/audio/Kannada_Birthday_Song_with_lyrics(128k).m4a" type="audio/mpeg">
+</audio>
+
+<!-- Page 1: Password -->
+<div class="card" id="page1">
+  <h2>🔐 A Message Only For You</h2>
+  <p>Enter the secret password 💌</p>
+  <input type="password" id="password" placeholder="Password" style="padding:12px;border-radius:20px;border:none;width:80%;font-size:16px;text-align:center;" />
+  <br>
+  <button onclick="decode()">Decode 💖</button>
+  <p id="error" style="color:#ffe6ea; margin-top:10px;"></p>
+</div>
+
+<!-- Page 2: Birthday + Cake -->
+<div class="card hidden" id="page2">
+  <h2>🎂 Happy 29th Birthday Brother Prathvi 🎂</h2>
+  <p>Your special day is 15 Dec 2025 🌸</p>
+  <p>You are the most amazing brother in my life ✨</p>
+  <p>Every moment with you makes life brighter ❤</p>
+
+  <div class="cake-container">
+    <div class="cake"></div>
+    <div class="candle" onclick="toggleCandle()">
+      <div class="flame" id="flame"></div>
+    </div>
+  </div>
+
+  <button onclick="nextPage()">Next ➡</button>
+</div>
+
+<!-- Page 3: Photos -->
+<div class="card hidden" id="page3">
+  <h2>📸 Our Memories 💕</h2>
+  <p>Every picture is a heartbeat ❤</p>
+  <img src="../media/image/photo1.jpg" alt="Our Photo 1">
+  <img src="../media/image/photo2.jpg" alt="Our Photo 2">
+
+  <p>I choose you. Always ♾💖</p>
+  <button onclick="nextLongWish()">Open My Long Wish 🎁</button>
+</div>
+
+<!-- Page 4: Long Wish -->
+<div class="card hidden" id="page4">
+  <h2>This is for you ❤</h2>
+  <p>🎉🎂💖 My Dearest Brother Prathvi 💖🎂🎉<br>
+     On this 29th birthday, I want you to know how much you mean to me! 🥰<br>
+     You light up my life like the brightest star ✨⭐<br>
+     Every moment with you is magical ✨🌸<br>
+     Your smile makes my heart skip a beat 💓<br>
+     You are my everything 💕💖💘<br>
+     May your birthday be filled with endless love ❤🎁, happiness 😄🎉, and sweet memories 🌹💫<br>
+     I promise to always be there for you ♾💖<br>
+     Happy Birthday, my amazing brother 😘💝<br>
+     💖🎂💌💞🎀🎇💐
+  </p>
+</div>
+
+<script>
+function decode(){
+  const correctPassword = "bro123";
+  const userPassword = document.getElementById('password').value;
+  const error = document.getElementById('error');
+  if(userPassword===correctPassword){
+    document.getElementById('page1').classList.add('hidden');
+    document.getElementById('page2').classList.remove('hidden');
+    document.getElementById('bgMusic').play();
+  } else{
+    error.innerText="❌ Wrong password. Try again ❤";
+  }
+}
+
+function nextPage(){
+  document.getElementById('page2').classList.add('hidden');
+  document.getElementById('page3').classList.remove('hidden');
+}
+
+function nextLongWish(){
+  document.getElementById('page3').classList.add('hidden');
+  document.getElementById('page4').classList.remove('hidden');
+}
+
+function toggleCandle(){
+  const flame = document.getElementById('flame');
+  flame.classList.toggle('off');
+}
+</script>
+
+</body>
+</html>
